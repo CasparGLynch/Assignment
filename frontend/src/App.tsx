@@ -14,7 +14,7 @@ import Header from './components/header';
     stock: number;
   }  
   
-
+// COMMENT
   
 const App = () => {
   const defaultProducts:IProduct[] = [];
