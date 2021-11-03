@@ -37,21 +37,4 @@
   }
 }
 
-.products {
-  list-style: none;
-  margin: 0px auto;
-  width: 800px;
-  text-align: left;
-}
 
-.error {
-  color: red;
-}
-
-.FruitBox {
-  border: black;
-  border-style: solid;
-  padding: 12px;
-  border-radius: 7px;
-  margin-top: 10px;
-}
