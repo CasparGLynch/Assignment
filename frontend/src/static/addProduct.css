@@ -1,0 +1,19 @@
+input {
+    
+    width: 300px;
+    padding: 20px, 40px;
+    margin: 5px;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.submit {
+    width: 100%;
+    color: white;
+    background-color: blue;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.submit:hover {
+    background-color: rgb(3, 3, 131);
+    cursor: pointer;
+}

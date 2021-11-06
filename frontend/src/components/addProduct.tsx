@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as React from 'react';
+import '../static/addProduct.css';
 
 type Props = { 
     saveProduct: (product: IProduct | any) => void
@@ -59,7 +60,7 @@ export const AddProduct: React.FC<Props> = ({ saveProduct }) => {
                 placeholder="Stock of Product"
                 onChange={handleProductData}
             />
-            <button disabled={product === undefined ? true : false}>
+            <button disabled={product === undefined ? true : false} className="submit">
                 Add Product
             </button>
         </form>

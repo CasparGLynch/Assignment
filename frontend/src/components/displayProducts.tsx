@@ -2,6 +2,8 @@ import * as React from "react"
 import { Dispatch } from "redux"
 import { useDispatch } from "react-redux"
 import axios from "axios";
+import '../static/displayProducts.css';
+import '../static/fruit.jpg';
 
 type Props =  {
     product: IProduct
@@ -35,12 +37,16 @@ export const DisplayProducts: React.FC<Props> = ({ product, removeProduct }) => 
     )
 
     return (
-        <div className="DisplayProducts">
-            <div>
+        <div >
+            <div className="list">
                 <h1>{product.name}</h1>
                 <p>{product.description}</p>
+                <div>{product.price}</div>
+                <div>{product.stock}</div>
+                <button onClick={() => deleteProduct(product.id)} className="danger">DELETE</button>
+                <button className="add">ADD TO CART</button>
             </div>
-            <button onClick={() => deleteProduct(product.id)}>DELETE</button>
+            
         </div>
     )
 }

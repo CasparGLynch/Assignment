@@ -1,0 +1,35 @@
+.danger{
+    margin-right: 1%;
+    background-color:rgb(241, 95, 95);
+    width: 30%;
+    border-radius: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.danger:hover{
+    color: white;
+    background-color: rgb(124, 3, 3);
+    cursor: pointer;
+    
+}
+
+.add { 
+    width: 30%;
+    background-color: rgb(104, 104, 247);
+    border-radius: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.add:hover {
+    cursor: pointer;
+    background-color: rgb(52, 52, 121);
+    color: white;
+}
+
+.list {
+    background-color: rgb(232, 255, 205);
+    border-radius: 20px;
+    border-style: solid;
+    border: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
