@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
   return (
    
-    <body>
+    <div>
      <Helmet> 
       <title>{ TITLE }</title>
      </Helmet> 
@@ -35,7 +35,7 @@ const App: React.FC = () => {
       <AddProduct saveProduct={saveProduct} />
       <ListOfProducts/>
       
-    </body>
+    </div>
      
       )
   }

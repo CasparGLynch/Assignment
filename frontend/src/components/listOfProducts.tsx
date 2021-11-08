@@ -42,23 +42,24 @@ import axios from "axios";
       }, []);
 
        Sproducts.forEach(function (item:IProduct, index:any) {
-         saveProduct(item)
+         console.log(item)
+         // saveProduct(item)
        });
 
 
 
 
-    const products: IProduct[] = useSelector(
-        (state: ProductState) => state.products,
-        shallowEqual
-      )
+    // const products: IProduct[] = useSelector(
+    //     (state: ProductState) => state.products,
+    //     shallowEqual
+    //   )
     
      
     
 
       return (
           <div>
-         {products.map((product: IProduct)=> (
+         {Sproducts.map((product: IProduct)=> (
             <DisplayProducts 
               key={product.id}
               product = {product}

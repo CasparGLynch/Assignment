@@ -31,12 +31,6 @@ export const AddProduct: React.FC<Props> = ({ saveProduct }) => {
     return (
         <form onSubmit={addNewProduct} className="Add-Product">
             <input
-                type="number"
-                id="id"
-                placeholder="ID of Product"
-                onChange={handleProductData}
-            />
-            <input
                 type="text"
                 id="name"
                 placeholder="Name of Product"
