@@ -3,15 +3,15 @@ import { Dispatch } from "redux"
 import axios from "axios";
 import '../static/displayProducts.css';
 import '../static/fruit.jpg';
-import { addProduct, removeProduct } from "../store/actionCreators"
+import { addProduct, addProductOrder, removeProduct } from "../store/actionCreators"
 import { useSelector, shallowEqual, useDispatch } from "react-redux"
 
 type Props =  {
     product: IProduct
-    removeProduct: (product: IProduct) => void
+    //removeProduct: (product: IProduct) => void
 }
 
-export const DisplayProducts: React.FC<Props> = ({ product, removeProduct }) => {
+export const DisplayProducts: React.FC<Props> = ({ product }) => {
     const dispatch: Dispatch<any> = useDispatch()
 
     const saveProduct = React.useCallback(
@@ -36,8 +36,29 @@ export const DisplayProducts: React.FC<Props> = ({ product, removeProduct }) => 
         
         
     }
+    const productOrders: IProductOrder[] = useSelector(
+        (state: ProductOrderState) => state.productOrders,
+        shallowEqual
+      )
     
+    const productOrder: IProductOrder = {
+        id: 2,
+        name: "apple",
+        stock: 3,
+        price: 3.99
+    }
+    const addToCart = () =>  { 
+        
 
+        addtoDB(productOrder)
+        console.log(productOrder)
+        console.log(productOrders)
+    }
+
+    const addtoDB = React.useCallback(
+        (productOrder: IProductOrder) => dispatch(addProductOrder(productOrder)),
+        [dispatch]
+    )
 
     const deleteProductRD = React.useCallback(
         (product: IProduct) => dispatch(removeProduct(product)),
@@ -51,8 +72,8 @@ export const DisplayProducts: React.FC<Props> = ({ product, removeProduct }) => 
                 <p>{product.description}</p>
                 <div>{product.price}</div>
                 <div>{product.stock}</div>
-                <button onClick={() => deleteProduct(product.id)} className="danger">DELETE</button>
-                <button className="add" >ADD TO CART</button>
+                {/* <button onClick={() => deleteProduct(product.id)} className="danger">DELETE</button> */}
+                <button className="add" onClick={() => addToCart()}>ADD TO CART</button>
             </div>
             
         </div>

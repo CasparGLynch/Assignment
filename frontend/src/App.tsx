@@ -33,7 +33,7 @@ const App: React.FC = () => {
       <title>{ TITLE }</title>
      </Helmet> 
       <Header/>
-      <AddProduct saveProduct={saveProduct}/>
+      {/* <AddProduct saveProduct={saveProduct}/> */}
       <ListOfProducts/>
       
     </div>

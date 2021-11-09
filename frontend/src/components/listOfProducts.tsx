@@ -29,9 +29,7 @@ import axios from "axios";
           })
           .then(response => {
             console.log(response.data);
-            response.data.forEach(function (item:IProduct, index:any) {
-              saveProduct(item)
-            })
+            setProducts(response.data)
             setLoading(false);
           })
           .catch(ex => {
@@ -46,7 +44,7 @@ import axios from "axios";
 
       Sproducts.forEach(function (item:IProduct, index:any) {
          
-         saveProduct(item)
+         
        });
 
 
@@ -65,11 +63,11 @@ import axios from "axios";
 
       return (
           <div>
-         {products.map((product: IProduct)=> (
+         {Sproducts.map((product: IProduct)=> (
             <DisplayProducts 
               key={product.id}
               product = {product}
-              removeProduct = {removeProduct}
+              //removeProduct = {removeProduct}
               />
           ))}
           </div>

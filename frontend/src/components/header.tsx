@@ -2,17 +2,29 @@ import * as React from 'react';
 import './header.css';
 import { BsFillBasketFill } from 'react-icons/bs'
 import App from '../App';
+import { useHistory } from "react-router-dom";
 
 interface IHeaderProps {
 }
 
 const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+  const history = useHistory()
+
+  function goHome() {
+    history.push("/")
+  }
+
+  function goCart() {
+    history.push("/cart")
+  }
+
+
   return (
     
     <div className="header">
-      <a className="logo" href="/">The Fruit Market</a>
+      <a className="logo" onClick={() => goHome()}>The Fruit Market</a>
       <div className="header-right">
-        <a className="active" href="/cart">Cart: <BsFillBasketFill /></a>
+        <a className="active" onClick={() => goCart()}>Cart: <BsFillBasketFill /></a>
         <a>Contact</a>
         <a>About</a>
       </div>
