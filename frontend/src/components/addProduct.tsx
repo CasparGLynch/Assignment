@@ -16,20 +16,24 @@ export const AddProduct: React.FC<Props> = ({ saveProduct }) => {
         })
     }
     
+    
 
 
     // AXIOS POST WHEN FORM IS SUBMITTED to api endpoint
     const addNewProduct = (e: React.FormEvent) => {
+        e.preventDefault()
+        
         axios.post('http://127.0.0.1:8000/api/products/', product)
             .then(res =>{
-                console.log(res);
-                console.log(res.data)
+                
+                saveProduct(res.data)
             })
-        window.location.reload()
+        .catch()
     }
 
     return (
         <form onSubmit={addNewProduct} className="Add-Product">
+
             <input
                 type="text"
                 id="name"

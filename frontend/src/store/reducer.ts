@@ -12,7 +12,7 @@ const InitialState: ProductState = {
     
 
 
-const reducer = (
+const Preducer = (
     state: ProductState = InitialState,
     action: ProductAction
 ): ProductState => {
@@ -54,4 +54,4 @@ const reducer = (
     return state
 }
 
-export default reducer
+export default Preducer

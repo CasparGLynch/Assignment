@@ -28,7 +28,10 @@ import axios from "axios";
             },
           })
           .then(response => {
-            setProducts(response.data);
+            console.log(response.data);
+            response.data.forEach(function (item:IProduct, index:any) {
+              saveProduct(item)
+            })
             setLoading(false);
           })
           .catch(ex => {
@@ -41,25 +44,28 @@ import axios from "axios";
           });
       }, []);
 
-       Sproducts.forEach(function (item:IProduct, index:any) {
-         console.log(item)
-         // saveProduct(item)
+      Sproducts.forEach(function (item:IProduct, index:any) {
+         
+         saveProduct(item)
        });
 
 
+       const deleteProduct = React.useCallback(
+        (product: IProduct) => dispatch(removeProduct(product)),
+        [dispatch]
+      )
 
 
-    // const products: IProduct[] = useSelector(
-    //     (state: ProductState) => state.products,
-    //     shallowEqual
-    //   )
+     const products: IProduct[] = useSelector(
+         (state: ProductState) => state.products,
+         shallowEqual
+       )
     
-     
     
 
       return (
           <div>
-         {Sproducts.map((product: IProduct)=> (
+         {products.map((product: IProduct)=> (
             <DisplayProducts 
               key={product.id}
               product = {product}

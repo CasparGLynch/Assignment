@@ -9,11 +9,11 @@ import Routes from './Routes'
 
 
 import App from "./App"
-import reducer from "./store/reducer"
+import Preducer from "./store/reducer"
 
 const store: Store<ProductState, ProductAction> & {
   dispatch: DispatchType 
-} = createStore(reducer, applyMiddleware(thunk))
+} = createStore(Preducer, applyMiddleware(thunk))
 
 
 
