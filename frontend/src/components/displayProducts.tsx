@@ -47,12 +47,14 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
         stock: 3,
         price: 3.99
     }
-    const addToCart = () =>  { 
-        
-
+    const addToCart = (product: IProduct) =>  { 
+        var productOrder: IProductOrder = {
+            id: product.id,
+            name: product.name,
+            stock: product.stock,
+            price: product.price
+        }
         addtoDB(productOrder)
-        console.log(productOrder)
-        console.log(productOrders)
     }
 
     const addtoDB = React.useCallback(
@@ -69,11 +71,11 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
         <div >
             <div className="list">
                 <h1>{product.name}</h1>
-                <p>{product.description}</p>
-                <div>{product.price}</div>
-                <div>{product.stock}</div>
+                <p>Description: {product.description}</p>
+                <div>${product.price} per unit</div>
+                <div>Stock: {product.stock}</div>
                 {/* <button onClick={() => deleteProduct(product.id)} className="danger">DELETE</button> */}
-                <button className="add" onClick={() => addToCart()}>ADD TO CART</button>
+                <button className="add" onClick={() => addToCart(product)}>ADD TO CART</button>
             </div>
             
         </div>

@@ -32,7 +32,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductOrder
-        fields = ('id', 'product', 'number', 'closed', 'order')
+        fields = ('id', 'name', 'stock', 'order')
 
     """
     Overriding the validate number function of ModelSerializer in order to:
@@ -54,7 +54,7 @@ class ProductOrderSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ('id', 'date_time', 'name_of_customer', 'shipping_info')
+        fields = ('id', 'date', 'email', 'address')
 
     
 

@@ -28,15 +28,16 @@ overriding save method to update stock
 """
 
 class Order(models.Model):
-       date_time = models.DateTimeField(auto_now=True)
-       name_of_customer = models.CharField(max_length=100)
-       shipping_info = models.TextField()
+       date = models.DateTimeField(auto_now=True)
+       email = models.CharField(max_length=100)
+       address = models.TextField()
+       
 
 
 class ProductOrder(models.Model):
-       product = models.ForeignKey(Product, on_delete=models.CASCADE)
-       number = models.IntegerField()
-       closed = models.BooleanField(default=False)
+       name = models.TextField()
+       stock = models.IntegerField()
+       
        order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
        def get_product(self):
