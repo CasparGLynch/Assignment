@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './header.css';
 import { BsFillBasketFill } from 'react-icons/bs'
-import App from '../App';
 import { useHistory } from "react-router-dom";
 
 interface IHeaderProps {

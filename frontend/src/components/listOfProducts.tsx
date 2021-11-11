@@ -1,24 +1,15 @@
 import * as React from "react"
-import { useSelector, shallowEqual, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Dispatch } from "redux";
 import { DisplayProducts } from "./displayProducts";
-import { addProduct, removeProduct } from "../store/actionCreators"
+
 import axios from "axios";
 
 
 
  export const ListOfProducts: React.FC = () =>{
-    const dispatch: Dispatch<any> = useDispatch()
-
-    const saveProduct = React.useCallback(
-        (product: IProduct) => dispatch(addProduct(product)),
-        [dispatch]
-      )
-
     const defaultProducts:IProduct[] = [];
     const [Sproducts, setProducts]: [IProduct[], (products: IProduct[]) => void] = React.useState(defaultProducts);
-    const [loading, setLoading]: [boolean, (loading: boolean) => void] = React.useState<boolean>(true);
-    const [error, setError]: [string, (error: string) => void] = React.useState("");
 
     React.useEffect(() => {
         axios
@@ -30,16 +21,7 @@ import axios from "axios";
           .then(response => {
             
             setProducts(response.data)
-            setLoading(false);
           })
-          .catch(ex => {
-            const error =
-            ex.response.status === 404
-              ? "Resource Not found"
-              : "An unexpected error has occurred";
-            setError(error);
-            setLoading(false);
-          });
         
         }, []);
 
@@ -51,7 +33,6 @@ import axios from "axios";
             <DisplayProducts 
               key={product.id}
               product = {product}
-              //removeProduct = {removeProduct}
               />
           ))}
           </div>

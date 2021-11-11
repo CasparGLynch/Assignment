@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import './Cart.css';
 import Header from '../header';
 import { shallowEqual, useSelector } from 'react-redux';
 import axios from 'axios';
-import { Dictionary } from '@reduxjs/toolkit';
-import { useHistory } from 'react-router-dom';
-
 
 interface IOrder {
   email: string,

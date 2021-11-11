@@ -1,14 +1,12 @@
 import * as React from "react"
 import { Dispatch } from "redux"
-import axios from "axios";
 import '../static/displayProducts.css';
 import '../static/fruit.jpg';
-import { addProduct, addProductOrder, removeProduct } from "../store/actionCreators"
+import {addProductOrder} from "../store/actionCreators"
 import { useSelector, shallowEqual, useDispatch } from "react-redux"
 
 type Props =  {
     product: IProduct
-    //removeProduct: (product: IProduct) => void
 }
 
 export const DisplayProducts: React.FC<Props> = ({ product }) => {
