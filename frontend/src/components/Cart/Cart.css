@@ -9,4 +9,24 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     justify-content: center;
     align-items: center;
+    
+    
+}
+
+.Title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    font-size: 35px;
+    background-color: rgb(255, 139, 118);
+    margin-top: -12px;
+}
+
+.Price {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+}
+
+.Container {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-style: solid;
 }

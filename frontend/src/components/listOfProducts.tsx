@@ -28,7 +28,7 @@ import axios from "axios";
             },
           })
           .then(response => {
-            console.log(response.data);
+            
             setProducts(response.data)
             setLoading(false);
           })
@@ -40,26 +40,10 @@ import axios from "axios";
             setError(error);
             setLoading(false);
           });
-      }, []);
+        
+        }, []);
 
-      Sproducts.forEach(function (item:IProduct, index:any) {
-         
-         
-       });
-
-
-       const deleteProduct = React.useCallback(
-        (product: IProduct) => dispatch(removeProduct(product)),
-        [dispatch]
-      )
-
-
-     const products: IProduct[] = useSelector(
-         (state: ProductState) => state.products,
-         shallowEqual
-       )
-    
-    
+        
 
       return (
           <div>

@@ -18,6 +18,10 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
     history.push("/cart")
   }
 
+  function goAbout() {
+    history.push("/about")
+  }
+
 
   return (
     
@@ -26,7 +30,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
       <div className="header-right">
         <a className="active" onClick={() => goCart()}>Cart: <BsFillBasketFill /></a>
         <a>Contact</a>
-        <a>About</a>
+        <a onClick={() => goAbout()}>About</a>
       </div>
     </div>
     

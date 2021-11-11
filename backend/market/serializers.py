@@ -32,7 +32,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductOrder
-        fields = ('id', 'name', 'stock', 'order')
+        fields = ('id', 'name', 'stock', 'order', 'product')
 
     """
     Overriding the validate number function of ModelSerializer in order to:
@@ -42,12 +42,18 @@ class ProductOrderSerializer(serializers.ModelSerializer):
     """
     def validate_number(self, value):
         if value < 1:
-            raise serializers.ValidationError('Number has to be at least 1')  # using .Validation error to raise error if 'number' less than 1
+             raise serializers.ValidationError('Number has to be at least 1')  # using .Validation error to raise error if 'number' less than 1
 
-        product = Product.objects.get(id=self.initial_data['product']) # getting the original product instance by querying database, using self.initial_data because the instance has not been validated yet
-        Product.objects.filter(id=self.initial_data['product']).update(stock = Product.get_stock(product) - int(self.initial_data['number'])) # updating the price by decreasing it by the amount in the product order
+        
         return value
 
+    def validate_product(self, value):
+        product = Product.objects.get(name=self.initial_data['name']) # getting the original product instance by querying database, using self.initial_data because the instance has not been validated yet
+        Product.objects.filter(name=self.initial_data['name']).update(stock = Product.get_stock(product) - int(self.initial_data['stock'])) # updating the price by decreasing it by the amount in the product order
+        
+        
+
+        return value
 
     
 

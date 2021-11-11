@@ -13,60 +13,50 @@ type Props =  {
 
 export const DisplayProducts: React.FC<Props> = ({ product }) => {
     const dispatch: Dispatch<any> = useDispatch()
-
-    const saveProduct = React.useCallback(
-        (product: IProduct) => dispatch(addProduct(product)),
-        [dispatch]
-      )
-
     
-      
-
-    //Deletes product from database. Uses a axios http DELETE request on the api endpoint of the 
-    //product ID. It the calls the deleteProductRD which deletes it from redux state
-    // Trailing / is very important for some reason
-    const deleteProduct = (id: number) => {
-        deleteProductRD(product)
-        axios.delete('http://127.0.0.1:8000/api/products/' + id + "/")
-            .then(res => {
-                console.log(res);
-                console.log(res.data)
-            })
-        
-        
-        
-    }
-    const productOrders: IProductOrder[] = useSelector(
-        (state: ProductOrderState) => state.productOrders,
-        shallowEqual
-      )
-    
-    const productOrder: IProductOrder = {
-        id: 2,
-        name: "apple",
-        stock: 3,
-        price: 3.99
-    }
-    const addToCart = (product: IProduct) =>  { 
+    const [disable, setDisable] = React.useState(false);
+    let addToCart = (product: IProduct) =>  { 
         var productOrder: IProductOrder = {
             id: product.id,
             name: product.name,
             stock: product.stock,
             price: product.price
         }
+        
         addtoDB(productOrder)
+        console.log(productOrders)
+        let index = productOrders.findIndex((obj => obj.id == product.id));
+        console.log(index)
+        console.log("DB: " + productOrders)
+
+        if (product.stock == 1){
+            setDisable(true)
+        }
+        if (index != -1){ 
+            if (productOrders.length > 0){
+                console.log("Product stock:" + product.stock)
+                console.log("Order Stock: " + productOrders[index].stock)
+                if (product.stock - 1<= productOrders[index].stock) {
+                    setDisable(true)
+                }
+            }
+        }
+        
+        
     }
+
+    const productOrders: IProductOrder[] = useSelector(
+        (state: ProductOrderState) => state.productOrders,
+        shallowEqual
+      )
+
+    
 
     const addtoDB = React.useCallback(
         (productOrder: IProductOrder) => dispatch(addProductOrder(productOrder)),
         [dispatch]
     )
-
-    const deleteProductRD = React.useCallback(
-        (product: IProduct) => dispatch(removeProduct(product)),
-        [dispatch, removeProduct]
-    )
-        
+   
     return (
         <div >
             <div className="list">
@@ -75,7 +65,7 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
                 <div>${product.price} per unit</div>
                 <div>Stock: {product.stock}</div>
                 {/* <button onClick={() => deleteProduct(product.id)} className="danger">DELETE</button> */}
-                <button className="add" onClick={() => addToCart(product)}>ADD TO CART</button>
+                <button disabled={disable} className="add" onClick={() => addToCart(product)}>ADD TO CART</button>
             </div>
             
         </div>

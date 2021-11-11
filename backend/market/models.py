@@ -37,7 +37,7 @@ class Order(models.Model):
 class ProductOrder(models.Model):
        name = models.TextField()
        stock = models.IntegerField()
-       
+       product = models.ForeignKey(Product, on_delete=models.CASCADE)
        order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
        def get_product(self):
