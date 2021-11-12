@@ -1,11 +1,11 @@
+from django.db import models # Used the django models class for my models
 
-from django.db import models
-from django.db.models.query_utils import Q
-from rest_framework.fields import HiddenField
-
+# NOTE: ID is implemented in the Model class 
+#
+#
 
 """
-Product Model:
+Product Model: Represents the Prodcts that are displayed and selectable on the frontend
 -name: the name of the product 
 -description: a description of the product
 -price: a float number that represents the product's price
@@ -17,23 +17,31 @@ class Product(models.Model):
        price = models.FloatField()
        stock = models.IntegerField()
 
-
        def get_stock(self):
               return self.stock
        def _str_(self):
            return self.name
 
 """
-overriding save method to update stock
+Order Model: A model that represents orders that are requested on the frontend
+-date: Date and time when order instance was created
+-email: Used a charField to represent the user's email
+-address: Address of the user that ordered
+-name: First and Last name of the user that ordered
 """
-
 class Order(models.Model):
        date = models.DateTimeField(auto_now=True)
        email = models.CharField(max_length=100)
        address = models.TextField()
        name = models.TextField()
 
-
+"""
+Product Order: A Table that is used to link Products and Orders (Complex Orders)
+-name: Name of the product in the Order
+-stock: number of products selected for the Order
+-product: id of the product in the Order, uses Foreign Key
+-order: id of the order that contains the ProductOrder
+"""
 class ProductOrder(models.Model):
        name = models.TextField()
        stock = models.IntegerField()
