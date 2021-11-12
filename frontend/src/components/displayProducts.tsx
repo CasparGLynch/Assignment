@@ -25,7 +25,10 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
     }, [])
 
     React.useEffect(()=>{
-        if(product.stock <= stocktemp){
+        
+        if (product.stock, stocktemp == 1){
+            setDisable(true)
+        } else if(product.stock <= stocktemp){
             setDisable(true)
         } 
     })
@@ -41,12 +44,15 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
         
         
         let index = productOrders.findIndex((obj => obj.id == product.id));
-    
-
-        if (product.stock <= 1){
+        if (product.stock < 1){
             setDisable(true)
         }
-        if (product.stock > 1){
+        else if (product.stock == 1){
+            addtoDB(productOrder)
+            stockfind(product)
+            setDisable(true)
+        }
+        else if (product.stock > 1){
             addtoDB(productOrder)
             stockfind(product)
         }
