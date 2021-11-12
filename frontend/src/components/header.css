@@ -1,6 +1,6 @@
 .header {
     overflow: hidden;
-    background-color: rgb(87, 167, 204);
+    background-color: #FC4445;
     padding: 20px 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -23,26 +23,17 @@
 
 .header a:hover {
     background-color: brown;
-    color: black;
+    color: rgb(0, 0, 0);
     cursor: pointer;
 }
 
 .header a.active {
-    background-color: dodgerblue;
-    color: white;
+    background-color: #490000;
+    color: rgb(255, 255, 255);
 }
 
 .header-right {
     float: right;
   }
 
-  @media screen and (max-width: 500px) {
-    .header a {
-      float: none;
-      display: block;
-      text-align: left;
-    }
-    .header-right {
-      float: none;
-    }
-  }
+  

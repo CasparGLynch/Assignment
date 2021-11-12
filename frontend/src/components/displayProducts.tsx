@@ -13,6 +13,19 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
     const dispatch: Dispatch<any> = useDispatch()
     
     const [disable, setDisable] = React.useState(false);
+    const [stocktemp, setStocktemp]: [number, (stock: number) => void] = React.useState(0)
+    React.useEffect(()=>{
+        try{
+            let index = productOrders.findIndex((obj => obj.id == product.id))
+            setStocktemp(productOrders[index].stock)
+        } catch(err) {
+
+        }
+        if(product.stock == stocktemp){
+            setDisable(true)
+        } 
+    })
+
     let addToCart = (product: IProduct) =>  { 
         var productOrder: IProductOrder = {
             id: product.id,
@@ -21,19 +34,21 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
             price: product.price
         }
         
-        addtoDB(productOrder)
-        console.log(productOrders)
+        
+        
         let index = productOrders.findIndex((obj => obj.id == product.id));
-        console.log(index)
-        console.log("DB: " + productOrders)
+    
 
-        if (product.stock == 1){
+        if (product.stock <= 1){
             setDisable(true)
+        }
+        if (product.stock > 1){
+            addtoDB(productOrder)
+            stockfind(product)
         }
         if (index != -1){ 
             if (productOrders.length > 0){
-                console.log("Product stock:" + product.stock)
-                console.log("Order Stock: " + productOrders[index].stock)
+                stockfind(product)
                 if (product.stock - 1<= productOrders[index].stock) {
                     setDisable(true)
                 }
@@ -43,17 +58,32 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
         
     }
 
+    
+
     const productOrders: IProductOrder[] = useSelector(
         (state: ProductOrderState) => state.productOrders,
         shallowEqual
       )
 
-    
+
+    const stockfind = (product: IProduct) => {
+        try{
+            let index = productOrders.findIndex((obj => obj.id == product.id))
+            
+            setStock(productOrders[index].stock + 1)
+        } catch(err) {
+            setStock(stock + 1)
+        }
+    } 
+    const [stock, setStock]: [number, (stock: number) => void] = React.useState(0)
+           
 
     const addtoDB = React.useCallback(
         (productOrder: IProductOrder) => dispatch(addProductOrder(productOrder)),
         [dispatch]
     )
+
+    
    
     return (
         <div >
@@ -64,6 +94,7 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
                 <div>Stock: {product.stock}</div>
                 {/* <button onClick={() => deleteProduct(product.id)} className="danger">DELETE</button> */}
                 <button disabled={disable} className="add" onClick={() => addToCart(product)}>ADD TO CART</button>
+                <div>Added {stock}</div> 
             </div>
             
         </div>

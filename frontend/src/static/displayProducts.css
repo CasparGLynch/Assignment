@@ -15,7 +15,7 @@
 
 .add { 
     width: 30%;
-    background-color: rgb(104, 104, 247);
+    background-color: #55BCC9;
     border-radius: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -27,9 +27,12 @@
 }
 
 .list {
-    background-color: rgb(232, 255, 205);
-    border-radius: 20px;
+    margin-left: 5px;
+    margin-right:  5px;
+    background-color: #97CAEF;
+    border-radius: 15px;
     border-style: solid;
     border: black;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }

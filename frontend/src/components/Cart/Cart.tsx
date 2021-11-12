@@ -3,6 +3,7 @@ import './Cart.css';
 import Header from '../header';
 import { shallowEqual, useSelector } from 'react-redux';
 import axios from 'axios';
+import { ProductOrderHTTP } from '../../store/actionCreators';
 
 interface IOrder {
   email: string,
@@ -89,12 +90,14 @@ React.useEffect(() =>{
   return(
   <div className="CartContainer">
     <Header/>
-    <h3 className="Title">My Cart:</h3>
+    <h3 className="Title"></h3>
       <div className="Cart">
         {productOrders.map((productOrder: IProductOrder) => (
+          <li key={productOrder.id}>
           <div className="Container">
             <h1>-Product: {productOrder.name}, {productOrder.stock} ordered.</h1>
           </div>
+          </li>
         ))}
 
       <p className="Price">Total Price: ${Math.round(totalPrice * 100) / 100}</p>  
