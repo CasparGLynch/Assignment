@@ -1,9 +1,10 @@
 import * as React from 'react';
 import './Cart.css';
 import Header from '../header';
-import { shallowEqual, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { ProductOrderHTTP } from '../../store/actionCreators';
+import { addProductOrder, ProductOrderHTTP, removeProductOrder } from '../../store/actionCreators';
+import { Dispatch } from 'react';
 
 interface IOrder {
   email: string,
@@ -20,7 +21,7 @@ interface IProductIden {
 
 
 const Cart = () => {
-  
+  const dispatch: Dispatch<any> = useDispatch()
   const productOrders: IProductOrder[] = useSelector(
     (state: ProductOrderState) => state.productOrders,
     shallowEqual
@@ -38,8 +39,12 @@ const Cart = () => {
          
   });
   
+  const removefromRedux = React.useCallback(
+    (productOrder: IProductOrder) => dispatch(removeProductOrder(productOrder)),
+    [dispatch]
+)
 
-  
+
 
   const handleOrderData = (e: React.FormEvent<HTMLInputElement>) => {
     setOrder({
@@ -95,7 +100,8 @@ React.useEffect(() =>{
         {productOrders.map((productOrder: IProductOrder) => (
           <li key={productOrder.id}>
           <div className="Container">
-            <h1>-Product: {productOrder.name}, {productOrder.stock} ordered.</h1>
+            <h2>-Product: {productOrder.name}, {productOrder.stock} ordered.</h2>
+            <button onClick={() => removefromRedux(productOrder)}>Remove from Cart</button>
           </div>
           </li>
         ))}

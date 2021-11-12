@@ -1,8 +1,5 @@
 import * as React from "react"
-import { useDispatch } from "react-redux"
-import { Dispatch } from "redux";
 import { DisplayProducts } from "./displayProducts";
-
 import axios from "axios";
 
 
