@@ -116,6 +116,12 @@ React.useEffect(() =>{
                 placeholder="Your Full Address"
                 onChange={handleOrderData}
             />
+            <input
+                type="text"
+                id="name"
+                placeholder="Your First and last Name"
+                onChange={handleOrderData}
+            />
             <button disabled={order === undefined ? true : false} className="submit">
                 Add Product
             </button>

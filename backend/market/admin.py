@@ -8,7 +8,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('date', 'email', 'address')
+    list_display = ('date', 'email', 'address', 'name')
     InlineFieldset = ('products')
 # Register your models here.
 

@@ -31,7 +31,7 @@ class Order(models.Model):
        date = models.DateTimeField(auto_now=True)
        email = models.CharField(max_length=100)
        address = models.TextField()
-       
+       name = models.TextField()
 
 
 class ProductOrder(models.Model):
@@ -48,18 +48,6 @@ class ProductOrder(models.Model):
 
 
        
-
-"""
-HAVE TO DO THIS IN SERIALIZERS.py not in models but whatever
-"""
-       # def save(self, *args, **kwargs):
-       #        if self.number < 0.0:
-       #              self.number = 0
-       #        product = Product.objects.get(id=self.product) 
-       #        Product.objects.filter(id=self.product).update(stock = Product.get_stock(product) - self.number)
-
-
-       #        super().save(*args, **kwargs)
 
 
 
