@@ -1,6 +1,5 @@
 import * as actionTypes from "./actionTypes"
-import * as React from 'react';
-import axios from 'axios';
+
  
 
 

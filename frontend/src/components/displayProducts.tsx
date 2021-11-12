@@ -22,10 +22,13 @@ export const DisplayProducts: React.FC<Props> = ({ product }) => {
         } catch(err) {
 
         }
-        if(product.stock == stocktemp){
+    }, [])
+
+    React.useEffect(()=>{
+        if(product.stock <= stocktemp){
             setDisable(true)
         } 
-    }, [])
+    })
 
     let addToCart = (product: IProduct) =>  { 
         var productOrder: IProductOrder = {
