@@ -30,3 +30,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-style: solid;
 }
+
+li {
+    list-style-type: none;
+}
