@@ -56,13 +56,7 @@ class ProductOrderSerializer(serializers.ModelSerializer):
         return value
 
 
-    """
-    Override of validate function of product. The purpose is to decrement the stock of the Product in the Database by the amount of the Product in the Order
-    """
-    def validate_product(self, value):
-        product = Product.objects.get(name=self.initial_data['name']) # getting the original product instance by querying database, using 'self.initial_data' because the instance has not been validated yet
-        Product.objects.filter(name=self.initial_data['name']).update(stock = Product.get_stock(product) - int(self.initial_data['stock'])) # updating the price by decreasing it by the amount in the productOrder instance
-        return value
+    
 
     
 """

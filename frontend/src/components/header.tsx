@@ -3,10 +3,10 @@ import './header.css';
 import { BsFillBasketFill } from 'react-icons/bs'
 import { useHistory } from "react-router-dom";
 
-interface IHeaderProps {
-}
 
-const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+
+const Header: React.FC = () => {
+  //using the useHistory to navigate around the site
   const history = useHistory()
 
   function goHome() {
@@ -21,14 +21,13 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
     history.push("/about")
   }
 
-
+  // Using a cart Icon from react-icons
   return (
     
     <div className="header">
       <a className="logo" onClick={() => goHome()}>The Fruit Market</a>
       <div className="header-right">
         <a className="active" onClick={() => goCart()}>Cart: <BsFillBasketFill /></a>
-        <a>Contact</a>
         <a onClick={() => goAbout()}>About</a>
       </div>
     </div>
